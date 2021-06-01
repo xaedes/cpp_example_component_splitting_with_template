@@ -38,14 +38,36 @@ struct Manager : public Foo_t<Manager<Foo_t, Bar_t>>, public Bar_t<Manager<Foo_t
     {}
 };
 
+
+template <template <class> class...Args>
+struct VariadicManager : public Args<VariadicManager<Args...>>...
+{
+    VariadicManager() : Args<VariadicManager<Args...>>(*this)...
+    {}
+};
+
 int main() {
 
     Manager<Foo,Bar> mgr;
     mgr.foo(10);
+
+    VariadicManager<Foo,Bar> vmgr;
+    vmgr.foo(10);
 }
 
 /*
 Output:
+foo(10)
+bar(9)
+foo(8)
+bar(7)
+foo(6)
+bar(5)
+foo(4)
+bar(3)
+foo(2)
+bar(1)
+foo(0)
 foo(10)
 bar(9)
 foo(8)
