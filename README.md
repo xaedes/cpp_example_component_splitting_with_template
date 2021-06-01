@@ -1,6 +1,7 @@
 # cpp_example_component_splitting_with_template
 
  ```cpp
+#include <iostream>
 template<class Manager_t>
 struct Foo
 {
