@@ -1,0 +1,1 @@
+# cpp_example_component_splitting_with_template
